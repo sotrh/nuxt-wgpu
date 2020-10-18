@@ -26,7 +26,8 @@ impl Demo {
         let (device, queue) = adapter
             .request_device(
                 &wgpu::DeviceDescriptor {
-                    features: wgpu::Features::PUSH_CONSTANTS,
+                    // features: wgpu::Features::PUSH_CONSTANTS,
+                    features: wgpu::Features::empty(),
                     limits: wgpu::Limits {
                         max_push_constant_size: 4, // size of f32
                         ..wgpu::Limits::default()
@@ -54,10 +55,10 @@ impl Demo {
             label: Some("Main Pipeline Layout"),
             bind_group_layouts: &[],
             push_constant_ranges: &[
-                wgpu::PushConstantRange {
-                    stages: wgpu::ShaderStage::FRAGMENT,
-                    range: 0..4,
-                },
+                // wgpu::PushConstantRange {
+                //     stages: wgpu::ShaderStage::FRAGMENT,
+                //     range: 0..4,
+                // },
             ],
         });
         let pipeline = device.create_render_pipeline(&wgpu::RenderPipelineDescriptor {

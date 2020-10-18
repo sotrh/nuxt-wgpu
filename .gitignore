@@ -1,2 +1,5 @@
+generated/
+
+# Rust
 /target
 Cargo.lock

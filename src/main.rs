@@ -51,7 +51,7 @@ async fn run(
 }
 
 fn main() {
-    env_logger::init();
+    // env_logger::init();
     let event_loop = EventLoop::new();
     let window = WindowBuilder::new()
         .with_title("WebGPU on Nuxt")
@@ -62,5 +62,21 @@ fn main() {
     {
         subscriber::initialize_default_subscriber(None);
         futures::executor::block_on(run(event_loop, window, wgpu::TextureFormat::Bgra8UnormSrgb));
+    }
+
+    #[cfg(target_arch = "wasm32")]
+    {
+        std::panic::set_hook(Box::new(console_error_panic_hook::hook));
+        console_log::init().expect("Could not initialize logger");
+        
+        use winit::platform::web::WindowExtWebSys;
+        web_sys::window()
+            .and_then(|win| win.document())
+            .and_then(|doc| doc.body())
+            .and_then(|body| {
+                body.append_child(&web_sys::Element::from(window.canvas())).ok()
+            })
+            .expect("Could not append canvas to document body");
+        wasm_bindgen_futures::spawn_local(run(event_loop, window, wgpu::TextureFormat::Bgra8Unorm));
     }
 }

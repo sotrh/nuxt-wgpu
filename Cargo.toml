@@ -5,8 +5,9 @@ authors = ["Ben Hansen <bhbenjaminhansen@gmail.com>"]
 edition = "2018"
 
 [dependencies]
-wgpu = "0.6"
-winit = "0.23"
+# wgpu = "0.6"
+wgpu = { version = "0.6", git = "https://github.com/gfx-rs/wgpu-rs" }
+winit = { version = "0.23", features = ["web-sys"] }
 env_logger = "0.7"
 log = "0.4"
 anyhow = "1.0"
@@ -15,6 +16,13 @@ futures = "0.3"
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies.subscriber]
 package = "wgpu-subscriber"
 version = "0.1"
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+web-sys = "=0.3.45"
+wasm-bindgen = "=0.2.68" # Must be exact
+wasm-bindgen-futures = "0.4.18"
+console_error_panic_hook = "0.1.6"
+console_log = "0.1.2"
 
 [build-dependencies]
 anyhow = "1.0"
