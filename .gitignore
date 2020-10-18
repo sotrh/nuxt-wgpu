@@ -3,3 +3,7 @@ generated/
 # Rust
 /target
 Cargo.lock
+
+# Node
+node_modules
+.nuxt/
