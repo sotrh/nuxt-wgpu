@@ -5,8 +5,8 @@
     </div>
 </template>
 <script>
-// import init from "../generated/nuxt-wgpu.js";
-// init();
+import init from "../generated/nuxt-wgpu.js";
+init();
 export default {
 }
 </script>

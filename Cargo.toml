@@ -4,6 +4,10 @@ version = "0.1.0"
 authors = ["Ben Hansen <bhbenjaminhansen@gmail.com>"]
 edition = "2018"
 
+
+# [lib]
+# crate-type = ["cdylib", "rlib"]
+
 [dependencies]
 # wgpu = "0.6"
 wgpu = { version = "0.6", git = "https://github.com/gfx-rs/wgpu-rs" }
